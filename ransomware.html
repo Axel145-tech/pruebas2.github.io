@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ransomware Simulation</title>
+  <style>
+    body {
+      background-color: black;
+      color: red;
+      text-align: center;
+      font-family: 'Courier New', Courier, monospace;
+      padding-top: 100px;
+    }
+    .alert {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+    .timer {
+      font-size: 48px;
+      margin: 20px 0;
+    }
+    .instruction {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+    .warning {
+      font-size: 16px;
+      color: orange;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="alert">⚠️ TU TELÉFONO HA SIDO BLOQUEADO ⚠️</div>
+  <div class="timer" id="countdown">02:00:00</div>
+  <div class="instruction">Paga $100 en criptomonedas para desbloquear tu dispositivo.</div>
+  <div class="warning">⚠️ Sino realiza el pago tus archivos serán eliminados ⚠️</div>
+
+  <script>
+    // Tiempo inicial: 2 horas en segundos
+    let timeLeft = 2 * 60 * 60;
+
+    function updateCountdown() {
+      let hours = Math.floor(timeLeft / 3600);
+      let minutes = Math.floor((timeLeft % 3600) / 60);
+      let seconds = timeLeft % 60;
+
+      document.getElementById('countdown').innerHTML =
+        String(hours).padStart(2, '0') + ':' +
+        String(minutes).padStart(2, '0') + ':' +
+        String(seconds).padStart(2, '0');
+
+      if (timeLeft > 0) {
+        timeLeft--;
+        setTimeout(updateCountdown, 1000);
+      } else {
+        document.querySelector('.instruction').textContent = "TIEMPO TERMINADO. ARCHIVOS ELIMINADOS.";
+      }
+    }
+
+    updateCountdown();
+  </script>
+</body>
+</html>
